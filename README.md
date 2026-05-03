@@ -874,50 +874,40 @@ Connection to YouTube:
 
 **Simple Version:**
 ```bash
-g++ -std=c++17 -O2 -I include -o dpi_simple \
-    src/main_working.cpp \
-    src/pcap_reader.cpp \
-    src/packet_parser.cpp \
-    src/sni_extractor.cpp \
-    src/types.cpp
+g++ -std=c++17 -O2 -I include -o dpi_simple `
+src/main_working.cpp `
+src/pcap_reader.cpp `
+src/packet_parser.cpp `
+src/sni_extractor.cpp `
+src/types.cpp
 ```
 
 **Multi-threaded Version:**
 ```bash
-g++ -std=c++17 -pthread -O2 -I include -o dpi_engine \
-    src/dpi_mt.cpp \
-    src/pcap_reader.cpp \
-    src/packet_parser.cpp \
-    src/sni_extractor.cpp \
-    src/types.cpp
+g++ -std=c++17 -O2 -I include -o dpi_engine src/dpi_mt.cpp src/pcap_reader.cpp src/packet_parser.cpp src/sni_extractor.cpp src/types.cpp
 ```
 
 ### Running
 
 **Basic usage:**
 ```bash
-./dpi_engine test_dpi.pcap output.pcap
-```
+.\dpi_engine.exe test_dpi.pcap output.pcap
 
 **With blocking:**
 ```bash
-./dpi_engine test_dpi.pcap output.pcap \
-    --block-app YouTube \
-    --block-app TikTok \
-    --block-ip 192.168.1.50 \
-    --block-domain facebook
+.\dpi_engine.exe test_dpi.pcap output.pcap --block-app YouTube --block-app TikTok --block-ip 192.168.1.50 --block-domain facebook
 ```
 
 **Configure threads (multi-threaded only):**
 ```bash
-./dpi_engine input.pcap output.pcap --lbs 4 --fps 4
+.\dpi_engine input.pcap output.pcap --lbs 4 --fps 4
 # Creates 4 LB threads × 4 FP threads = 16 processing threads
 ```
 
 ### Creating Test Data
 
 ```bash
-python3 generate_test_pcap.py
+python generate_test_pcap.py
 # Creates test_dpi.pcap with sample traffic
 ```
 
@@ -935,7 +925,8 @@ python3 generate_test_pcap.py
 ╚══════════════════════════════════════════════════════════════╝
 
 [Rules] Blocked app: YouTube
-[Rules] Blocked IP: 192.168.1.50
+[
+```Rules] Blocked IP: 192.168.1.50
 
 [Reader] Processing packets...
 [Reader] Done reading 77 packets
